@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\SkillController;
 use App\Http\Controllers\Admin\PortfolioController;
+use App\Http\Controllers\Admin\ExperienceController;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,3 +33,7 @@ Route::resource('skill', SkillController::class)->except(['show']);
 Route::resource('portfolio', PortfolioController::class)->except(['show']);
 Route::get('portfolio/image/{hash}', [PortfolioController::class, 'getImag'])->name('portfolio.getImage');
 /* Portfolio Routes */
+
+/* Experience Routes */
+Route::resource('experience', ExperienceController::class)->except(['show']);
+/* Experience Routes */
