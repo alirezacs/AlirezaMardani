@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\SkillController;
+use App\Http\Controllers\Admin\PortfolioController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,3 +27,8 @@ Route::get('user/avatar/{hash}', [UserController::class, 'getAvatar'])->name('us
 /* Skill Routes */
 Route::resource('skill', SkillController::class)->except(['show']);
 /* Skill Routes */
+
+/* Portfolio Routes */
+Route::resource('portfolio', PortfolioController::class)->except(['show']);
+Route::get('portfolio/image/{hash}', [PortfolioController::class, 'getImag'])->name('portfolio.getImage');
+/* Portfolio Routes */

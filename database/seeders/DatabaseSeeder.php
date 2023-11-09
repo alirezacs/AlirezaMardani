@@ -21,6 +21,9 @@ class DatabaseSeeder extends Seeder
             // Skill Table
             SkillTableSeeder::class,
 
+            // Portfolio Table
+            PortfolioTableSeeder::class,
+
         ]);
 
     }
