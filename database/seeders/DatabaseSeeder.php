@@ -29,6 +29,9 @@ class DatabaseSeeder extends Seeder
 
             // Comment Table
             CommentTableSeeder::class,
+
+            // Contact Table
+            ContactTableSeeder::class,
         ]);
 
     }
