@@ -32,6 +32,9 @@ class DatabaseSeeder extends Seeder
 
             // Contact Table
             ContactTableSeeder::class,
+
+            // Eduction Table
+            EductionTableSeeder::class,
         ]);
 
     }

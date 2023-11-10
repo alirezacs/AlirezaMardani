@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\PortfolioController;
 use App\Http\Controllers\Admin\ExperienceController;
 use App\Http\Controllers\Admin\CommentController;
 use App\Http\Controllers\Admin\ContactController;
+use App\Http\Controllers\Admin\EductionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -48,3 +49,7 @@ Route::get('comment/avatar/{hash}', [CommentController::class, 'getAvatar'])->na
 /* Contact Routes */
 Route::resource('contact', ContactController::class)->except(['create', 'store', 'edit', 'update']);
 /* Contact Routes */
+
+/* Eduction Routes */
+Route::resource('eduction', EductionController::class)->except(['show']);
+/* Eduction Routes */
