@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\SkillController;
 use App\Http\Controllers\Admin\PortfolioController;
 use App\Http\Controllers\Admin\ExperienceController;
+use App\Http\Controllers\Admin\CommentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -37,3 +38,8 @@ Route::get('portfolio/image/{hash}', [PortfolioController::class, 'getImag'])->n
 /* Experience Routes */
 Route::resource('experience', ExperienceController::class)->except(['show']);
 /* Experience Routes */
+
+/* Comment Routes */
+Route::resource('comment', CommentController::class);
+Route::get('comment/avatar/{hash}', [CommentController::class, 'getAvatar'])->name('comment.getAvatar');
+/* Comment Routes */

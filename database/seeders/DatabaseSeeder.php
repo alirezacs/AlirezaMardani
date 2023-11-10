@@ -27,6 +27,8 @@ class DatabaseSeeder extends Seeder
             // Experience Table
             ExperienceTableSeeder::class,
 
+            // Comment Table
+            CommentTableSeeder::class,
         ]);
 
     }
