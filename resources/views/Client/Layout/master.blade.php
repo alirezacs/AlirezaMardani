@@ -20,26 +20,7 @@
     </noscript>
 </head>
 <body id="top">
-<header>
-    <div class="profile-page sidebar-collapse">
-        <nav class="navbar navbar-expand-lg fixed-top navbar-transparent bg-primary" color-on-scroll="400">
-            <div class="container">
-                <div class="navbar-translate"><a class="navbar-brand" href="#" rel="tooltip">Creative CV</a>
-                    <button class="navbar-toggler navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation" aria-controls="navigation" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-bar bar1"></span><span class="navbar-toggler-bar bar2"></span><span class="navbar-toggler-bar bar3"></span></button>
-                </div>
-                <div class="collapse navbar-collapse justify-content-end" id="navigation">
-                    <ul class="navbar-nav">
-                        <li class="nav-item"><a class="nav-link smooth-scroll" href="#about">About</a></li>
-                        <li class="nav-item"><a class="nav-link smooth-scroll" href="#skill">Skills</a></li>
-                        <li class="nav-item"><a class="nav-link smooth-scroll" href="#portfolio">Portfolio</a></li>
-                        <li class="nav-item"><a class="nav-link smooth-scroll" href="#experience">Experience</a></li>
-                        <li class="nav-item"><a class="nav-link smooth-scroll" href="#contact">Contact</a></li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
-    </div>
-</header>
+@include('Client.Layout.header')
 <div class="page-content">
     <div>
         <div class="profile-page">
@@ -48,9 +29,9 @@
                     <div class="page-header-image" data-parallax="true" style="background-image: url('{{ asset('assets/client/images/cc-bg-1.jpg') }}')"></div>
                     <div class="container">
                         <div class="content-center">
-                            <div class="cc-profile-image"><a href="#"><img src="{{ asset('assets/client/images/anthony.jpg') }}" alt="Image"/></a></div>
-                            <div class="h2 title">Anthony Barnett</div>
-                            <p class="category text-white">Web Developer, Graphic Designer,  Photographer</p><a class="btn btn-primary smooth-scroll mr-2" href="#contact" data-aos="zoom-in" data-aos-anchor="data-aos-anchor">Hire Me</a><a class="btn btn-primary" href="#" data-aos="zoom-in" data-aos-anchor="data-aos-anchor">Download CV</a>
+                            <div class="cc-profile-image"><a href="#"><img src="{{ route('user.getAvatar', ['hash' => $user->avatar]) }}" alt="Image"/></a></div>
+                            <div class="h2 title">{{ $user->first_name . ' ' . $user->last_name }}</div>
+                            <p class="category text-white">WEB DEVELOPER, PROGRAMMER</p><a class="btn btn-primary smooth-scroll mr-2" href="#contact" data-aos="zoom-in" data-aos-anchor="data-aos-anchor">Hire Me</a><a class="btn btn-primary" href="#" data-aos="zoom-in" data-aos-anchor="data-aos-anchor">Download CV</a>
                         </div>
                     </div>
                     <div class="section">
@@ -68,8 +49,7 @@
                         <div class="col-lg-6 col-md-12">
                             <div class="card-body">
                                 <div class="h4 mt-0 title">About</div>
-                                <p>Hello! I am Anthony Barnett. Web Developer, Graphic Designer and Photographer.</p>
-                                <p>Creative CV is a HTML resume template for professionals. Built with Bootstrap 4, Now UI Kit and FontAwesome, this modern and responsive design template is perfect to showcase your portfolio, skills and experience. <a href="https://templateflip.com/templates/creative-cv/" target="_blank">Learn More</a></p>
+                                <p>{{ $user->biography }}</p>
                             </div>
                         </div>
                         <div class="col-lg-6 col-md-12">
@@ -77,23 +57,23 @@
                                 <div class="h4 mt-0 title">Basic Information</div>
                                 <div class="row">
                                     <div class="col-sm-4"><strong class="text-uppercase">Age:</strong></div>
-                                    <div class="col-sm-8">24</div>
+                                    <div class="col-sm-8">{{ $user->age }}</div>
                                 </div>
                                 <div class="row mt-3">
                                     <div class="col-sm-4"><strong class="text-uppercase">Email:</strong></div>
-                                    <div class="col-sm-8">anthony@company.com</div>
+                                    <div class="col-sm-8">{{ $user->email }}</div>
                                 </div>
                                 <div class="row mt-3">
                                     <div class="col-sm-4"><strong class="text-uppercase">Phone:</strong></div>
-                                    <div class="col-sm-8">+1718-111-0011</div>
+                                    <div class="col-sm-8">{{ $user->phone }}</div>
                                 </div>
                                 <div class="row mt-3">
                                     <div class="col-sm-4"><strong class="text-uppercase">Address:</strong></div>
-                                    <div class="col-sm-8">140, City Center, New York, U.S.A</div>
+                                    <div class="col-sm-8">{{ $user->address }}</div>
                                 </div>
                                 <div class="row mt-3">
                                     <div class="col-sm-4"><strong class="text-uppercase">Language:</strong></div>
-                                    <div class="col-sm-8">English, German, French</div>
+                                    <div class="col-sm-8">{{ $user->language }}</div>
                                 </div>
                             </div>
                         </div>
@@ -107,52 +87,15 @@
                 <div class="card" data-aos="fade-up" data-aos-anchor-placement="top-bottom">
                     <div class="card-body">
                         <div class="row">
-                            <div class="col-md-6">
-                                <div class="progress-container progress-primary"><span class="progress-badge">HTML</span>
-                                    <div class="progress">
-                                        <div class="progress-bar progress-bar-primary" data-aos="progress-full" data-aos-offset="10" data-aos-duration="2000" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 80%;"></div><span class="progress-value">80%</span>
+                            @foreach($skills as $skill)
+                                <div class="col-md-6">
+                                    <div class="progress-container progress-primary"><span class="progress-badge">{{ $skill->name }}</span>
+                                        <div class="progress">
+                                            <div class="progress-bar progress-bar-primary" data-aos="progress-full" data-aos-offset="10" data-aos-duration="2000" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: {{ $skill->percent }}%;"></div><span class="progress-value">{{ $skill->percent }}%</span>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="progress-container progress-primary"><span class="progress-badge">CSS</span>
-                                    <div class="progress">
-                                        <div class="progress-bar progress-bar-primary" data-aos="progress-full" data-aos-offset="10" data-aos-duration="2000" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 75%;"></div><span class="progress-value">75%</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="progress-container progress-primary"><span class="progress-badge">JavaScript</span>
-                                    <div class="progress">
-                                        <div class="progress-bar progress-bar-primary" data-aos="progress-full" data-aos-offset="10" data-aos-duration="2000" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;"></div><span class="progress-value">60%</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="progress-container progress-primary"><span class="progress-badge">SASS</span>
-                                    <div class="progress">
-                                        <div class="progress-bar progress-bar-primary" data-aos="progress-full" data-aos-offset="10" data-aos-duration="2000" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;"></div><span class="progress-value">60%</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="progress-container progress-primary"><span class="progress-badge">Bootstrap</span>
-                                    <div class="progress">
-                                        <div class="progress-bar progress-bar-primary" data-aos="progress-full" data-aos-offset="10" data-aos-duration="2000" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 75%;"></div><span class="progress-value">75%</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="progress-container progress-primary"><span class="progress-badge">Photoshop</span>
-                                    <div class="progress">
-                                        <div class="progress-bar progress-bar-primary" data-aos="progress-full" data-aos-offset="10" data-aos-duration="2000" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 70%;"></div><span class="progress-value">70%</span>
-                                    </div>
-                                </div>
-                            </div>
+                            @endforeach
                         </div>
                     </div>
                 </div>
@@ -514,15 +457,10 @@
                     </div>
                 </div>
             </div>
-        </div></div>
-</div>
-<footer class="footer">
-    <div class="container text-center"><a class="cc-facebook btn btn-link" href="#"><i class="fa fa-facebook fa-2x " aria-hidden="true"></i></a><a class="cc-twitter btn btn-link " href="#"><i class="fa fa-twitter fa-2x " aria-hidden="true"></i></a><a class="cc-google-plus btn btn-link" href="#"><i class="fa fa-google-plus fa-2x" aria-hidden="true"></i></a><a class="cc-instagram btn btn-link" href="#"><i class="fa fa-instagram fa-2x " aria-hidden="true"></i></a></div>
-    <div class="h4 title text-center">Anthony Barnett</div>
-    <div class="text-center text-muted">
-        <p>&copy; Creative CV. All rights reserved.<br>Design - <a class="credit" href="https://templateflip.com" target="_blank">TemplateFlip</a></p>
+        </div>
     </div>
-</footer>
+</div>
+@include('Client.Layout.footer')
 <script src="{{ asset('assets/client/js/core/jquery.3.2.1.min.js?ver=1.1.0') }}"></script>
 <script src="{{ asset('assets/client/js/core/popper.min.js?ver=1.1.0') }}"></script>
 <script src="{{ asset('assets/client/js/core/bootstrap.min.js?ver=1.1.0') }}"></script>

@@ -36,6 +36,8 @@ class UpdateRequest extends FormRequest
     {
         if(!$this->request->has('is_active')){
             $this->request->add(['is_active' => false]);
+        }else{
+            $this->request->add(['is_active' => true]);
         }
     }
 }

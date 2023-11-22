@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Client\IndexController;
 
 /*
 |--------------------------------------------------------------------------
@@ -12,3 +13,5 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+
+Route::get('/', [IndexController::class, 'index'])->name('index');
