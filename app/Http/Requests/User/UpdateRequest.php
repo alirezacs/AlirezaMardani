@@ -26,7 +26,7 @@ class UpdateRequest extends FormRequest
             'last_name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'email', 'unique:users,email,' . request()->route('user')->id],
             'phone' => ['required', 'unique:users,phone,' . request()->route('user')->id],
-            'avatar' => ['nullable', 'file', 'mimes:jpg,jpeg,png', 'max:2000'],
+            'avatar' => ['nullable', 'file', 'image', 'max:2000'],
             'age' => ['required', 'integer', 'min:10', 'max:100'],
             'address' => ['required', 'string', 'max:255'],
             'language' => ['required', 'string', 'max:255'],
