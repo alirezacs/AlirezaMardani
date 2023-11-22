@@ -29,7 +29,11 @@
                     <div class="page-header-image" data-parallax="true" style="background-image: url('{{ asset('assets/client/images/cc-bg-1.jpg') }}')"></div>
                     <div class="container">
                         <div class="content-center">
-                            <div class="cc-profile-image"><a href="#"><img src="{{ route('user.getAvatar', ['hash' => $user->avatar]) }}" alt="Image"/></a></div>
+                            <div class="cc-profile-image">
+                                <a href="#" style="display:inline-block; width: 180px; height: 180px">
+                                    <img style="width: 100%; height: 100%; object-fit: cover; object-position: top" src="{{ route('user.getAvatar', ['hash' => $user->avatar]) }}" alt="Image"/>
+                                </a>
+                            </div>
                             <div class="h2 title">{{ $user->first_name . ' ' . $user->last_name }}</div>
                             <p class="category text-white">WEB DEVELOPER, PROGRAMMER</p><a class="btn btn-primary smooth-scroll mr-2" href="#contact" data-aos="zoom-in" data-aos-anchor="data-aos-anchor">Hire Me</a><a class="btn btn-primary" href="#" data-aos="zoom-in" data-aos-anchor="data-aos-anchor">Download CV</a>
                         </div>
